@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="img">
+      <div class="box">
+        <form id="myform">
+          <h1>signup</h1>
+          <input
+            type="name"
+            placeholder="enter your name"
+            class="input"
+            id="name"
+          />
+          <br /><br />
+          <input
+            type="email"
+            placeholder="enter your email address"
+            class="input"
+            id="email"
+          />
+          <br /><br />
+          <input
+            type="text"
+            placeholder="enter your number"
+            class="input"
+            id="number"
+          />
+          <br /><br />
+          <input
+            type="password"
+            placeholder="create a new password"
+            class="input"
+            id="password"
+          /><br /><br />
+          <input
+            type="password"
+            placeholder="conform a new password"
+            class="input"
+            id="cpassword"
+          /><br /><br />
+
+          <button type="submit">submit</button>
+
+          <p id="arr"></p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let myform = document.getElementById("myform");
+  let arr = document.getElementById("arr");
+
+  myform.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let userInfo = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      number: document.getElementById("number").value,
+      password: document.getElementById("password").value,
+      cpassword: document.getElementById("cpassword").value,
+
+
+    };
+    console.log(userInfo.name);
+    console.log(userInfo.email);
+    console.log(userInfo.number);
+    console.log(userInfo.password);
+    console.log(userInfo.cpassword);
+
+
+    validate(userInfo);
+  });
+
+  function validate(val) {
+
+// name  Regex code : /^[A-Za-z]{2,}$/
+
+if(val.name == ""){
+     arr.textContent = "No name found"
+}
+
+if (!/^[A-Za-z]{2,}$/.test(val.name)) {
+    arr.textContent = "Please input right name"
+}
+
+//mobile /^\d{10}$/
+
+
+
+if (!/^\d{10}$/.test(val.number)) {
+    arr.textContent = "Mobile number is wrong"
+}
+
+//password regex /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/
+
+if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/.test(val.password)) {
+    arr.textContent = "Please use Strong password"
+}
+
+//Email /^\S+@\S+\.\S+$/
+
+if (!/^\S+@\S+\.\S+$/.test(val.email)) {
+    arr.textContent = "Please use Correct email"
+}
+
+if (val.password !== val.cpassword) {
+    arr.textContent = "Password not match " 
+    
+    
+}}
+
+</script>
